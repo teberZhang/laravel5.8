@@ -16,7 +16,21 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//如果路由是定义在 routes/api.php 的话，则无需关注 CSRF 保护问题
-//Route::any('bar', function (Request $request) {
-//    return 'This is a request from any HTTP verb';
-//});
+
+/**
+ * 路由模型绑定
+ */
+//隐式绑定
+Route::get('users/{user}', function (App\User $user) {
+    return $user->email;
+});
+//显式绑定
+
+/**
+ * 动态频率限制
+ */
+Route::middleware('auth:api', 'throttle:rate_limit,1')->group(function () {
+    Route::get('/usertimes', function () {
+        //
+    });
+});
