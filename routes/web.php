@@ -139,5 +139,11 @@ Route::name('admin.')->group(function () {
 });
 //路由名称前缀??
 
+Route::get('user/{id}', 'UserController@show');
+//单动作控制器
+Route::get('oneAction', 'ShowProfile');
+//资源路由
+Route::resource('article', 'ArticleController');
+
 
 
