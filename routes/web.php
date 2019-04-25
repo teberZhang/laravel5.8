@@ -144,6 +144,14 @@ Route::get('user/{id}', 'UserController@show');
 Route::get('oneAction', 'ShowProfile');
 //资源路由
 Route::resource('article', 'ArticleController');
+Route::get('cookie/add', function () {
+    $minutes = 24 * 60;
+    return response('欢迎来到 Laravel 学院')->cookie('name', '学院君', $minutes);
+});
+Route::get('cookie/get', function(\Illuminate\Http\Request $request) {
+    $cookie = $request->cookie('name');
+    dd($cookie);
+});
 
 
 
