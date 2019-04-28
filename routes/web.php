@@ -14,17 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get("hi",function (){
+    return "hi";
+});
 Route::get("hello",function (){
-    echo "你好，欢迎访问laravelacademy.org";
-});
-//Route::get('/user', 'UserController@index');
-//一个路由响应多种 HTTP 请求动作 —— 这可以通过 match 方法来实现
-Route::match(['get', 'post'], 'foo', function () {
-    return '这是GET或POST的请求';
-});
-//any 方法注册一个路由来响应所有HTTP 请求动作
-Route::any('bar', function () {
-    return '这是来自任何HTTP的请求';
+    return redirect()->route('hi');
 });
 
 /**
@@ -151,6 +145,13 @@ Route::get('cookie/add', function () {
 Route::get('cookie/get', function(\Illuminate\Http\Request $request) {
     $cookie = $request->cookie('name');
     dd($cookie);
+});
+
+Route::get('cookie/response', function() {
+    Cookie::queue(Cookie::make('site', 'Laravel学院',1));
+    Cookie::queue('author', '学院君', 1);
+    return response('Hello Laravel', 200)
+        ->header('Content-Type', 'text/plain');
 });
 
 
