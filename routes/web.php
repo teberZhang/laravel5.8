@@ -18,7 +18,8 @@ Route::get("hi",function (){
     return "hi";
 });
 Route::get("hello",function (){
-    return redirect()->route('hi');
+    //重定向到外部域名
+    return redirect()->away('http://www.haodiandian.cn');
 });
 
 /**
@@ -154,5 +155,6 @@ Route::get('cookie/response', function() {
         ->header('Content-Type', 'text/plain');
 });
 
+Route::get('usersession', 'UserController@detail');
 
 
