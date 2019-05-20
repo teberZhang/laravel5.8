@@ -162,5 +162,5 @@ Route::get('usersession', 'UserController@detail');
 // 显示创建博客文章表单...
 Route::get('postArticle/create', 'ArticlePostController@create');
 // 存储新的博客文章...
-Route::post('postArticle', 'ArticlePostController@stores')->name('art');
+Route::post('postArticle', 'ArticlePostController@store')->name('art');
 
