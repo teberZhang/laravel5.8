@@ -164,3 +164,9 @@ Route::get('postArticle/create', 'ArticlePostController@create');
 // 存储新的博客文章...
 Route::post('postArticle', 'ArticlePostController@store')->name('art');
 
+//-----------------------------基础组件 —— 错误异常---------------
+Route::get('my404', 'LoggingController@notFound');
+
+//-----------------------------基础组件 —— 日志---------------
+Route::get('logWrite', 'LoggingController@write');
+
