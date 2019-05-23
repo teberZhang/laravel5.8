@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //监听查询事件
+        /*DB::listen(function ($query) {
+             var_dump($query->sql);
+             var_dump($query->bindings);
+             var_dump($query->time);
+        });*/
     }
 }
