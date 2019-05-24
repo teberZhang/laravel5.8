@@ -170,3 +170,5 @@ Route::get('my404', 'LoggingController@notFound');
 //-----------------------------基础组件 —— 日志---------------
 Route::get('logWrite', 'LoggingController@write');
 
+Route::get('sqlBuilder', 'PaginateController@index');
+
