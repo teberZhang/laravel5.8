@@ -16,3 +16,8 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+//自定义命令php artisan build project
+Artisan::command('build {project}', function ($project) {
+    $this->info("Building {$project}!");
+})->describe('第1个简单命令');
