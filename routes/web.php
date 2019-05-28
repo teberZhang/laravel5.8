@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Redis;
 
 Route::get('/', function () {
     return view('welcome');
@@ -169,6 +170,14 @@ Route::get('my404', 'LoggingController@notFound');
 
 //-----------------------------基础组件 —— 日志---------------
 Route::get('logWrite', 'LoggingController@write');
+
+//-----------------------------数据库操作 —— Redis —— 发布/订阅-------
+Route::get('redis-publish', function () {
+    // 普通订阅
+    Redis::publish('test-channel', json_encode(['foo' => 'bar']));
+    //测试通配符订阅
+    Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
+});
 
 Route::get('sqlBuilder', 'ArtisanSelfController@index');
 
