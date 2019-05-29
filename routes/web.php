@@ -10,21 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Redis;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get("hi",function (){
+    return "hi";
+});
 Route::get("hello",function (){
-    echo "你好，欢迎访问laravelacademy.org";
-});
-//Route::get('/user', 'UserController@index');
-//一个路由响应多种 HTTP 请求动作 —— 这可以通过 match 方法来实现
-Route::match(['get', 'post'], 'foo', function () {
-    return '这是GET或POST的请求';
-});
-//any 方法注册一个路由来响应所有HTTP 请求动作
-Route::any('bar', function () {
-    return '这是来自任何HTTP的请求';
+    //重定向到外部域名
+    return redirect()->away('http://www.haodiandian.cn');
 });
 
 /**
@@ -139,5 +135,49 @@ Route::name('admin.')->group(function () {
 });
 //路由名称前缀??
 
+Route::get('user/{id}', 'UserController@show');
+//单动作控制器
+Route::get('oneAction', 'ShowProfile');
+//资源路由
+Route::resource('article', 'ArticleController');
+Route::get('cookie/add', function () {
+    $minutes = 24 * 60;
+    return response('欢迎来到 Laravel 学院')->cookie('name', '学院君', $minutes);
+});
+Route::get('cookie/get', function(\Illuminate\Http\Request $request) {
+    $cookie = $request->cookie('name');
+    dd($cookie);
+});
 
+Route::get('cookie/response', function() {
+    Cookie::queue(Cookie::make('site', 'Laravel学院',1));
+    Cookie::queue('author', '学院君', 1);
+    return response('Hello Laravel', 200)
+        ->header('Content-Type', 'text/plain');
+});
+
+//-----------------------------Session--------------------------
+Route::get('usersession', 'UserController@detail');
+
+//-----------------------------基础组件 —— 表单验证---------------
+// 显示创建博客文章表单...
+Route::get('postArticle/create', 'ArticlePostController@create');
+// 存储新的博客文章...
+Route::post('postArticle', 'ArticlePostController@store')->name('art');
+
+//-----------------------------基础组件 —— 错误异常---------------
+Route::get('my404', 'LoggingController@notFound');
+
+//-----------------------------基础组件 —— 日志---------------
+Route::get('logWrite', 'LoggingController@write');
+
+//-----------------------------数据库操作 —— Redis —— 发布/订阅-------
+Route::get('redis-publish', function () {
+    // 普通订阅
+    Redis::publish('test-channel', json_encode(['foo' => 'bar']));
+    //测试通配符订阅
+    Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
+});
+
+Route::get('sqlBuilder', 'ArtisanSelfController@index');
 
