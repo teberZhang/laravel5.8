@@ -179,7 +179,7 @@ Route::get('redis-publish', function () {
     Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
 });
 
-Route::get('sqlBuilder', 'ArtisanSelfController@index');
+Route::get('sqlBuilder', 'RedisController@index');
 
 
 Auth::routes();
