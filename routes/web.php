@@ -11,6 +11,7 @@
 |
 */
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -184,3 +185,19 @@ Route::get('sqlBuilder', 'RedisController@index');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/auth/callback', function (Request $request){
+    $http = new GuzzleHttp\Client;
+
+    $response = $http->post('http://local.laravel58.com/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'authorization_code',
+            'client_id' => '3',  // your client id
+            'client_secret' => 'TQWyTBVYidWtq4TWBGLLQv62ScONFmiq7BlgRKsI',   // your client secret
+            'redirect_uri' => 'http://local.laravel58.com/auth/callback',
+            'code' => $request->code,
+        ],
+    ]);
+
+    return json_decode((string) $response->getBody(), true);
+});
