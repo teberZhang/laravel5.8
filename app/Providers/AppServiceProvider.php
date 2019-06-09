@@ -30,5 +30,8 @@ class AppServiceProvider extends ServiceProvider
              var_dump($query->bindings);
              var_dump($query->time);
         });*/
+
+        // 注册观察者
+        \App\Order::observe('App\Observers\OrderObserver');
     }
 }
