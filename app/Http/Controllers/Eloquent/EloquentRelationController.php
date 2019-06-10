@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ProductInfo;
 use App\BrandInfo;
+use App\ProductPicInfo;
 
 /***
  * Eloquent ORM —— 关联关系
@@ -32,7 +33,12 @@ class EloquentRelationController extends Controller
         //dd($picInfo);
 
         //获取该商品的图片(可用的) 一对多
-        $picsUsed = $pics->pics()->where('pic_status',1)->get();
-        dd($picsUsed);
+        //$picsUsed = $pics->pics()->where('pic_status',1)->get();
+        //dd($picsUsed);
+
+        //
+        $productPicsInfo = ProductPicInfo::find(4);
+        $product = $productPicsInfo->product;
+        dd($product);
     }
 }

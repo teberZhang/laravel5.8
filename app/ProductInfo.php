@@ -37,7 +37,7 @@ class ProductInfo extends Model
          */
         return $this->belongsTo('App\BrandInfo','brand_id','brand_id')->withDefault(function ($brandInfo) {
             $brandInfo->brand_name = '其他品牌';
-        });;
+        });
     }
 
     /**
