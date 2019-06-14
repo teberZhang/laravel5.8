@@ -28,7 +28,7 @@ class EloquentRelationController extends Controller
         return $product->brand->brand_name;*/
 
         //获取该商品的图片 一对多
-        $pics = ProductInfo::find(1);
+        //$pics = ProductInfo::find(1);
         //$picInfo = $pics->pics;
         //dd($picInfo);
 
