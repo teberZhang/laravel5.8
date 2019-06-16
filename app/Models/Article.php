@@ -1,18 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /***
- * 视频表 videos
- * Class Video
+ * 文章表
+ * Class Article
  * @package App
  */
-class Video extends Model
+class Article extends Model
 {
     /**
-     * 获取所有视频的评论
+     * 获取帖子的所有评论
      */
     public function comments()
     {

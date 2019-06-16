@@ -1,7 +1,7 @@
 <?php
 namespace App\Observers;
 
-use App\Order;
+use App\Models\Order;
 use Illuminate\Support\Facades\Log;
 
 /***

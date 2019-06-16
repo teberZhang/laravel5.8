@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,7 +22,7 @@ class Role extends Model
          * @param3 定义关联关系模型的外键名称
          * @param4 要连接到的模型的外键名称
          */
-        return $this->belongsToMany('App\Admin','admin_role',
+        return $this->belongsToMany('App\Models\Admin','admin_role',
             'role_id','admin_id')
             //->as('subscription') //自定义 pivot 属性名
             //->withTimestamps()

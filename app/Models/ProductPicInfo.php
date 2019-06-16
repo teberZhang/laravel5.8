@@ -1,9 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 /***
  * 商品图片信息表
@@ -31,6 +30,6 @@ class ProductPicInfo extends Model
      */
     public function product()
     {
-        return $this->belongsTo('App\ProductInfo','product_id','product_id');
+        return $this->belongsTo('App\Models\ProductInfo','product_id','product_id');
     }
 }

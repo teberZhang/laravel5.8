@@ -32,6 +32,6 @@ class AppServiceProvider extends ServiceProvider
         });*/
 
         // 注册观察者
-        \App\Order::observe('App\Observers\OrderObserver');
+        \App\Models\Order::observe('App\Observers\OrderObserver');
     }
 }

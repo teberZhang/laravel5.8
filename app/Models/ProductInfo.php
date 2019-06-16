@@ -1,9 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 /***
  * 商品详情表
@@ -35,7 +34,8 @@ class ProductInfo extends Model
          * @uses param2=>ProductInfo表brand_id(外键)、param3=>brand_info表主键默认id
          * @uses withDefault=>在匹配不到情况下会使用
          */
-        return $this->belongsTo('App\BrandInfo','brand_id','brand_id')->withDefault(function ($brandInfo) {
+        return $this->belongsTo('App\Models\BrandInfo','brand_id','brand_id')
+            ->withDefault(function ($brandInfo) {
             $brandInfo->brand_name = '其他品牌';
         });
     }
@@ -45,6 +45,6 @@ class ProductInfo extends Model
      */
     public function pics()
     {
-        return $this->hasMany('App\ProductPicInfo','product_id','product_id');
+        return $this->hasMany('App\Models\ProductPicInfo','product_id','product_id');
     }
 }
