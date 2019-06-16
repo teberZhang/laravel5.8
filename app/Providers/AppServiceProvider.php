@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //监听查询事件
         DB::listen(function ($query) {
-             var_dump($query->sql);
-             var_dump($query->bindings);
+             //var_dump($query->sql);
+             //var_dump($query->bindings);
              //var_dump($query->time);
         });
 
