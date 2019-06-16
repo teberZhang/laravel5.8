@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Comment extends Model
 {
+    protected $fillable = ['body'];
+
     /***
-     * @desc 获取所有拥有的可评论模型。
+     * @desc 获取所有拥有的可评论模型。(多态一对多)
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
     public function commentable()

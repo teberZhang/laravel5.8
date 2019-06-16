@@ -26,6 +26,13 @@ class ProductPicInfo extends Model
     protected $primaryKey = 'product_pic_id';
 
     /**
+     * 要触发的所有关联关系
+     * 更新图片信息自动更新商品表的 updated_at
+     * @var array
+     */
+    protected $touches = ['product'];
+
+    /**
      * 根据图片获取商品信息 一对多（逆向）
      */
     public function product()
