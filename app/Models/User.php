@@ -32,6 +32,20 @@ class User extends Model
     ];
 
     /**
+     * 在数组中隐藏的属性
+     *
+     * @var array
+     */
+    protected $hidden = ['password'];
+
+    /**
+     * 在数组中显示的属性
+     *
+     * @var array
+     */
+    //protected $visible = ['name', 'email'];
+
+    /**
      * 获取用户的用户名=>首字母大写
      *
      * @param  string  $value
