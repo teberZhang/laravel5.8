@@ -30,4 +30,12 @@ class Article extends Model
     {
         return $this->morphToMany('App\Models\Tag', 'taggable');
     }
+
+    /**
+     * 获取该文章的用户 一对一相对的关联
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User','user_id','id');
+    }
 }
