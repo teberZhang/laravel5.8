@@ -39,6 +39,15 @@ class User extends Model
     protected $hidden = ['password'];
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
+    /**
      * 在数组中显示的属性
      *
      * @var array

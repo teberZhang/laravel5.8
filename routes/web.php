@@ -180,7 +180,7 @@ Route::get('redis-publish', function () {
     Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
 });
 
-Route::get('sqlBuilder', 'Eloquent\EloquentJsonController@index');
+Route::get('sqlBuilder', 'Safety\HashController@index');
 
 
 Auth::routes();
@@ -188,16 +188,32 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/auth/callback', function (Request $request){
     $http = new GuzzleHttp\Client;
-
     $response = $http->post('http://local.laravel58.com/oauth/token', [
         'form_params' => [
             'grant_type' => 'authorization_code',
             'client_id' => '3',  // your client id
             'client_secret' => 'TQWyTBVYidWtq4TWBGLLQv62ScONFmiq7BlgRKsI',   // your client secret
             'redirect_uri' => 'http://local.laravel58.com/auth/callback',
-            'code' => $request->code,
+            'code' => $request->get('code'),
         ],
     ]);
 
     return json_decode((string) $response->getBody(), true);
+});
+
+// 密码授权令牌
+Route::get('/auth/password', function (Request $request){
+    $http = new \GuzzleHttp\Client();
+    $response = $http->post('http://local.laravel58.com/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'password',
+            'client_id' => '3',
+            'client_secret' => 'TQWyTBVYidWtq4TWBGLLQv62ScONFmiq7BlgRKsI',
+            'username' => 'dongguan@163.com',
+            'password' => '617574sha',
+            'scope' => '',
+        ],
+    ]);
+
+    return json_decode((string)$response->getBody(), true);
 });
