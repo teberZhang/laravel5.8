@@ -23,6 +23,20 @@ class ProcessPodcastJob implements ShouldQueue
     protected $order;
 
     /**
+     * 可以尝试任务的次数（优先级比 Artisan 命令高）.
+     *
+     * @var int
+     */
+    public $tries = 3;
+
+    /**
+     * 超时前任务可以运行的秒数（优先级比 Artisan 命令高）.
+     *
+     * @var int
+     */
+    public $timeout = 120;
+
+    /**
      * 创建新任务实例.
      *
      * @param Order $order
@@ -41,5 +55,16 @@ class ProcessPodcastJob implements ShouldQueue
     public function handle(Order $order)
     {
         Log::info(json_encode($order));
+    }
+
+    /**
+     * 确定任务应超时的时间.
+     * 指定时间内允许任务的最大尝试次数
+     *
+     * @return \DateTime
+     */
+    public function retryUntil()
+    {
+        return now()->addSeconds(5);
     }
 }
