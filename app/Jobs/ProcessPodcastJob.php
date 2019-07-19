@@ -43,6 +43,7 @@ class ProcessPodcastJob implements ShouldQueue
      */
     public function __construct(Order $order)
     {
+        $this->order = $order;
         Log::info('jobs === order_id = ' . $order->order_id);
     }
 
@@ -54,7 +55,7 @@ class ProcessPodcastJob implements ShouldQueue
      */
     public function handle(Order $order)
     {
-        Log::info(json_encode($order));
+        Log::info('消费了' . $order->toJson());
     }
 
     /**
