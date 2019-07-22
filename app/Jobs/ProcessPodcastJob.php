@@ -50,22 +50,33 @@ class ProcessPodcastJob implements ShouldQueue
     /**
      * 执行任务.
      *
-     * @param Order $order
      * @return void
      */
-    public function handle(Order $order)
+    public function handle()
     {
-        Log::info('消费了' . $order->toJson());
+        Log::info('消费了' . $this->order->toJson());
+    }
+
+    /**
+     * 清理失败的任务.
+     *
+     * @param  Exception  $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        // 发送失败通知, etc...
     }
 
     /**
      * 确定任务应超时的时间.
      * 指定时间内允许任务的最大尝试次数
+     * 我这里加了我的消费不一会就过期了
      *
      * @return \DateTime
      */
-    public function retryUntil()
+    /*public function retryUntil()
     {
         return now()->addSeconds(5);
-    }
+    }*/
 }

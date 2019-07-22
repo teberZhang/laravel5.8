@@ -33,10 +33,11 @@ class PodcastController extends Controller
         /***
          * 延时分发
          */
-        /*$orderId = 3;
-        $order = Order::findOrFail($orderId);
-        ProcessPodcastJob::dispatch($order)
-            ->delay(now()->addMinutes(1));*/
+//        $orderId = 3;
+//        $order = Order::findOrFail($orderId);
+//        ProcessPodcastJob::dispatch($order)
+//            ->onQueue('processing')
+//            ->delay(now()->addMinutes(1));
 
 
         /***
