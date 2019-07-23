@@ -13,6 +13,9 @@ use App\Events\OrderShipped;
  * @package App\Http\Controllers\Stage
  * EventServiceProvider 中注册事件/监听器 然后
  * php artisan event:generate 会自动创建没有创建的事件/监听器
+ *
+ * 对应消费队列
+ * php artisan queue:work redis --queue=listeners
  */
 class OrderController extends Controller
 {
