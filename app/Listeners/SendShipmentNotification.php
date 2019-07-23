@@ -8,16 +8,32 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
 /***
- * 监听器
+ * 监听器(事件监听器队列)
  * Class SendShipmentNotification
  * @package App\Listeners
  * 事件监听器队列 需要实现 ShouldQueue
  */
-class SendShipmentNotification
+class SendShipmentNotification implements ShouldQueue
 {
+    use InteractsWithQueue;
 
     /**
-     * Create the event listener.
+     * 任务将被推送到的连接名称.
+     *
+     * @var string|null
+     */
+    public $connection = 'redis';
+
+    /**
+     * 任务将被推送到的连接名称.
+     *
+     * @var string|null
+     */
+    public $queue = 'listeners';
+
+
+    /**
+     * 创建事件侦听器.
      *
      * @return void
      */
