@@ -180,7 +180,7 @@ Route::get('redis-publish', function () {
     Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
 });
 
-Route::get('sqlBuilder', 'Stage\CacheController@tag');
+Route::get('sqlBuilder', 'Stage\CollectionController@index');
 
 
 Auth::routes();
