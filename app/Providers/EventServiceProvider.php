@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Log;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -46,6 +47,10 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        // 手动注册事件(通配符事件监听器 —— 监听多个事件)
+        Event::listen('event.test.*',function ($event, $param) {
+            Log::info('通配符事件监听器 eventName = ' . $event . '&params = ' . json_encode($param));
+        });
+
     }
 }

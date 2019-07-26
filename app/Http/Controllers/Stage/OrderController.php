@@ -35,4 +35,16 @@ class OrderController extends Controller
 
         return 'success';
     }
+
+    /***
+     * 手动注册事件使用
+     * EventServiceProvider.php boot方法中手动注册的通配符事件监听器event.test.*
+     */
+    public function evt()
+    {
+        // 通配符事件 —— 多个事件触发
+        event('event.test.demo1',['data' => ['id' => 12, 'name' => 'Jack']]);
+        event('event.test.demo2',['data' => ['id' => 18, 'name' => 'Tom']]);
+        return 'success';
+    }
 }
