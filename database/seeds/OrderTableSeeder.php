@@ -53,14 +53,14 @@ class OrderTableSeeder extends Seeder
             'payment_money' => $order_money+$shipping_money-$district_money,
             'shipping_comp_name' => $shipping_comp_name[rand(0,count($shipping_comp_name)-1)],
             'shipping_sn' => date('ymd').substr(time(),-5).substr(microtime(),2,5),
-            'create_time' => date("Y-m-d H:i:s",$nowTime),
+            'created_at' => date("Y-m-d H:i:s",$nowTime),
             'shipping_time' => date("Y-m-d H:i:s",$nowTime+rand(10,60)),
             'pay_time' => date("Y-m-d H:i:s",$nowTime+rand(60,1800)),
             'receive_time' => date("Y-m-d H:i:s",$nowTime+rand(10000,86400)),
             'order_status' => rand(1,4),
             'order_point' => rand(5,40),
             'invoice_time' => '杭州同花顺',
-            'modified_time' => date("Y-m-d H:i:s",$nowTime),
+            'updated_at' => date("Y-m-d H:i:s",$nowTime),
         ]);
     }
 }

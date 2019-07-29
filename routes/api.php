@@ -34,3 +34,13 @@ Route::middleware('auth:api', 'throttle:rate_limit,1')->group(function () {
         //
     });
 });
+
+Route::get('/redirect', function (){
+    $query = http_build_query([
+        'client_id' => '3',
+        'redirect_uri' => 'http://local.laravel58.com/auth/callback',
+        'response_type' => 'code',
+        'scope' => '',
+    ]);
+    return redirect('http://local.laravel58.com/oauth/authorize?' . $query);
+});

@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
     {
         DB::table("users")->insert([
             'name' => str_random(10),
-            'email' => str_random(10).'@laravelacademy.org',
-            'password' => md5('123456'),
+            'email' => str_random(10).'@163.com',
+            'password' => md5('12345678'),
         ]);
     }
 }
