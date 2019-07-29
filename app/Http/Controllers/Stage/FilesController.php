@@ -62,7 +62,11 @@ class FilesController extends Controller
          */
         // 自动文件流
         // 自动计算文件名的MD5值...
-        //Storage::putFile('photos', new File('/storage/app/file.txt'));
+        // Storage::putFile('photos', new File('/storage/app/file.txt'));
+
+        // 添加内容到文件开头/结尾
+//        Storage::prepend('file1.txt', 'Prepended Text');
+//        Storage::append('file1.txt', 'Appended Text');
 
 
     }
