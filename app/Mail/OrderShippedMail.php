@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Models\Order;
+use Illuminate\Support\Facades\Storage;
 
 /***
  * 进阶系列 —— 邮件 —— 生成可邮寄类
@@ -43,9 +44,24 @@ class OrderShippedMail extends Mailable
     {
         // 配置视图
         return $this->view('emails.orders.shipped')
+            // 自定义 SwiftMailer 消息
+            ->withSwiftMessage(function ($message) {
+                $message->getHeaders()
+                    ->addTextHeader('Custom-Header', 'HeaderValue');
+            })
+            // 映射变量
             ->with([
-                'orderName' => $this->order->name,
-                'orderPrice' => $this->order->price,
+                'shippingUser' => $this->order->shipping_user,
+                'orderMoney' => $this->order->order_money,
+            ])
+            // 附件
+            ->attach('a.jpg', [
+                'as' => 'attach.jpg',
+                'mime' => 'image/jpeg',
+            ])
+            // 原生数据附件(添加原生的字节字符串作为附件 —— 内存 —— 不存磁盘)
+            ->attachData(Storage::get('a.jpg'), 'a.jpg', [
+                'mime' => 'image/jpeg',
             ]);
     }
 }
