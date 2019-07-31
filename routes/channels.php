@@ -20,6 +20,11 @@ Broadcast::channel('order.{$orderId}', function ($user, $orderId) {
     return $user->id === \App\Models\Order::findOrNew($orderId)->user_id;
 });
 
+// 新闻广播通道news —— public
+Broadcast::channel('news', function ($user, $id) {
+    return true;
+});
+
 // 定义频道类 —— 注册频道
 use App\Broadcasting\OrderChannel;
 Broadcast::channel('order.{order}', OrderChannel::class);

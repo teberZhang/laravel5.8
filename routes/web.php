@@ -181,6 +181,7 @@ Route::get('redis-publish', function () {
 });
 
 Route::get('sqlBuilder', 'Stage\MailController@index');
+Route::view('newsroom', 'newsroom');
 
 
 Auth::routes();
