@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 /***
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class User extends Model
 {
+    use Notifiable;
+
     /**
      * 应该被调整为日期的属性
      *
