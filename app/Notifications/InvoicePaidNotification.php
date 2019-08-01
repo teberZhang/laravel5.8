@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use App\Models\Order;
 
 /***
- * 进阶系列 —— 通知
+ * 进阶系列 —— 通知 —— 邮件通知
  * Class InvoicePaidNotification
  * @package App\Notifications
  */

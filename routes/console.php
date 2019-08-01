@@ -22,8 +22,15 @@ Artisan::command('build {project}', function ($project) {
     $this->info("Building {$project}!");
 })->describe('第1个简单命令');
 
-// 新闻广播 —— public
+// 广播 —— public
 Artisan::command('bignews', function () {
     broadcast(new \App\Events\NewsEvent(date('Y-m-d h:i:s A').": BIG NEWS!"));
     $this->comment("news sent");
 })->describe('Send news');
+
+// 广播 —— private
+Artisan::command('privatePush', function () {
+    $user = \App\Models\User::find(29);
+    broadcast(new \App\Events\PrivateMessageEvent($user,date('Y-m-d h:i:s A').": privatePush!"));
+    $this->comment("privatePush sent");
+})->describe('Send privatePush');

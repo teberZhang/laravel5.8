@@ -181,7 +181,12 @@ Route::get('redis-publish', function () {
 });
 
 Route::get('sqlBuilder', 'Stage\NotificationController@index');
+
+/***
+ * 广播类
+ */
 Route::view('newsroom', 'newsroom');
+Route::view('privatePush', 'privatePush');
 
 
 Auth::routes();
