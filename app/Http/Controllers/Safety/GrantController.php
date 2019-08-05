@@ -23,15 +23,30 @@ class GrantController extends Controller
     public function index()
     {
 
-        $article_id = 2;
-        $user = $this->request->user();
-        $article = \App\Models\Article::find($article_id);
-
-        // Gate判断当前用户是否有权限更新文章
-        /*if (Gate::forUser($user)->allows('update-article', $article)) {
-            return '有操作权限';
+        /***
+         * Gate
+         * AuthServiceProvider —— boot 添加 update-article —— Gate注册授权
+         */
+        $article = \App\Models\Article::find(2);
+        /***
+         * 对当前登录用户
+         */
+        if (Gate::allows('update-article', $article)) {
+            dump('当前用户可以更新文章...');
         }
-        return '没有操作权限';*/
+        if (Gate::denies('update-article', $article)) {
+            dump('当前用户不能更新文章...');
+        }
+
+        /***
+         * 对指定用户判断是否有权限操作
+         */
+        if (Gate::forUser(\App\Models\User::find(4))->allows('update-article', $article)) {
+            dump('当前用户可以更新文章...');
+        }
+        if (Gate::forUser(\App\Models\User::find(4))->denies('update-article', $article)) {
+            dump('当前用户不能更新文章...');
+        }
 
         /***
          * 使用 Policy 授权动作
@@ -42,8 +57,18 @@ class GrantController extends Controller
          */
         $user = $this->request->user();
         if ($user->can('update', $article)) {
-            return '有操作权限';
+            dump('有操作权限');
         }
-        return '没有操作权限';
+
+        /***
+         * 通过中间件 —— 放在routes —— web.php 测试
+         */
+//        Route::post('/article', function () {
+//            dump('当前用户可以创建文章...');
+//        })->middleware('can:create,App\Models\Article');
+//
+//        Route::get('hhha', function () {
+//            return '<form method="POST" action="/article">' . csrf_field() . '<button type="submit">提交</button></form>';
+//        });
     }
 }
