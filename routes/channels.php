@@ -15,21 +15,11 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-// 授权频道
-Broadcast::channel('order.{$orderId}', function ($user, $orderId) {
-    return $user->id === \App\Models\Order::findOrNew($orderId)->user_id;
-});
-
 // 广播通道news —— public
-Broadcast::channel('news', function ($user, $id) {
-    return true;
-});
+Broadcast::channel('news', App\Broadcasting\NewsPublicBroadcastChannel::class);
 
 // 广播通道 —— private
-Broadcast::channel('privatePush.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
+Broadcast::channel('privatePush.{id}', App\Broadcasting\NewsPrivateBroadcastChannel::class);
 
-// 定义频道类 —— 注册频道
-use App\Broadcasting\OrderChannel;
-Broadcast::channel('order.{order}', OrderChannel::class);
+// 广播通道 —— presence
+Broadcast::channel('chat.{roomId}', App\Broadcasting\NewsPresenceBroadcastChannel::class);

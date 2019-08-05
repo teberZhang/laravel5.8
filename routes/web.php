@@ -185,7 +185,9 @@ Route::get('sqlBuilder', 'Safety\GrantController@index');
 /***
  * 广播类
  */
+// 广播 —— public
 Route::view('newsroom', 'newsroom');
+// 广播 —— private
 Route::view('privatePush', 'privatePush');
 
 

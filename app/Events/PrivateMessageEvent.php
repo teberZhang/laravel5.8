@@ -72,7 +72,7 @@ class PrivateMessageEvent implements ShouldBroadcast
      */
     public function broadcastWith()
     {
-        return ['message' => $this->message,'status' => 'ok', 'event' => 'PrivateMessageEvent'];
+        return ['message' => $this->message, 'user' => $this->user, 'event' => 'PrivateMessageEvent'];
     }
 
     /**

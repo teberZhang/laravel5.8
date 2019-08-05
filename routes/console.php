@@ -26,11 +26,11 @@ Artisan::command('build {project}', function ($project) {
 Artisan::command('bignews', function () {
     broadcast(new \App\Events\NewsEvent(date('Y-m-d h:i:s A').": BIG NEWS!"));
     $this->comment("news sent");
-})->describe('Send news');
+})->describe('公共广播');
 
 // 广播 —— private
 Artisan::command('privatePush', function () {
     $user = \App\Models\User::find(29);
     broadcast(new \App\Events\PrivateMessageEvent($user,date('Y-m-d h:i:s A').": privatePush!"));
     $this->comment("privatePush sent");
-})->describe('Send privatePush');
+})->describe('私有广播');
