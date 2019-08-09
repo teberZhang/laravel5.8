@@ -20,11 +20,34 @@
 </script>
 <script src="{{ mix('js/app.js') }}"></script>
 <script>
-    <!--如果Event中用了broadcastAs,listen的时候前面要加.-->
+	/***
+     * 如果Event中用了broadcastAs,listen的时候前面要加.或者加//
+     */
     Echo.private('privatePush.' + window.id)
         .listen('.privateMessage', (e) => {
             console.log(e.message);
         });
+
+	/***
+     * 使用wishper方法只通过laravel-echo-server而不用通过laravel进行通讯
+     */
+	 // 发送端
+	 let channel = Echo.join('privatePush.' + window.id)
+	 var int=self.setInterval("clock()",2000);
+	 function clock()
+	 {
+		 channel.whisper('typing', {
+		 userid: window.id,
+		 message: 'jack',
+		 typing: true
+		 });
+	 }
+    // 收听端
+    Echo.join('privatePush.' + window.id)
+        .listenForWhisper('typing', (e) => {
+            console.log(e.message);
+        });
+
 </script>
 </body>
 </html>

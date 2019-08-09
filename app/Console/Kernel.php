@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Db;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,6 +28,17 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        /***
+         * 闭包调度任务
+         */
+        $schedule->call(function () {
+            Log::info('调度任务A');
+        })->daily();
+
+        /***
+         * 调度 Artisan 命令
+         */
     }
 
     /**

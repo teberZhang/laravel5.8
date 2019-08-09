@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 class SendEmails extends Command
 {
     /**
-     * The name and signature of the console command.
+     * 控制台命令的名称和签名.
      *
      * @var string
      */
@@ -23,11 +23,11 @@ class SendEmails extends Command
         {--queue=default : Whether the job should be queued}';
 
     /**
-     * The console command description.
+     * 控制台命令描述.
      *
      * @var string
      */
-    protected $description = 'Send drip e-mails to a user';
+    protected $description = '向用户发送电子邮件';
 
     /**
      * Create a new command instance.
