@@ -27,10 +27,8 @@ class NewsPresenceBroadcastChannel
      * @param  \App\User  $user
      * @return array|bool
      */
-    public function join(User $user, $roomId)
+    public function join(User $user)
     {
-        if ($user->canJoinRoom($roomId)) {
-            return ['id' => $user->id, 'name' => $user->name];
-        }
+        return $user->id < 1 ? [$user->id, $user->name] : null;
     }
 }

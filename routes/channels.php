@@ -22,4 +22,4 @@ Broadcast::channel('news', App\Broadcasting\NewsPublicBroadcastChannel::class);
 Broadcast::channel('privatePush.{id}', App\Broadcasting\NewsPrivateBroadcastChannel::class);
 
 // 广播通道 —— presence
-Broadcast::channel('chat.{roomId}', App\Broadcasting\NewsPresenceBroadcastChannel::class);
+Broadcast::channel('presenceChannel', App\Broadcasting\NewsPresenceBroadcastChannel::class);

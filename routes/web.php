@@ -189,6 +189,10 @@ Route::get('sqlBuilder', 'Safety\GrantController@index');
 Route::view('newsroom', 'newsroom');
 // 广播 —— private
 Route::view('privatePush', 'privatePush');
+// 广播 —— 私有频道 PrivateChannel —— whisper事件的接收端 —— listenForWhisper(不经过laravel)
+Route::view('privateWhisper', 'privateWhisper');
+// 广播 —— 存在频道 PresenceChannel
+Route::view('presencePush', 'presencePush');
 
 
 Auth::routes();

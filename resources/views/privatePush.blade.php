@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>privatePush</title>
+    <title>私有频道 PrivateChannel —— 广播</title>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <div class="content" id="app">
-    PrivateChannel
+    私有频道 PrivateChannel —— 广播
 </div>
 <script>
     @if(!empty(Auth::user()))
@@ -30,23 +30,18 @@
 
 	/***
      * 使用wishper方法只通过laravel-echo-server而不用通过laravel进行通讯
+	 * 接收端在另一个页面 http://local.laravel58.com/privateWhisper
      */
 	 // 发送端
 	 let channel = Echo.join('privatePush.' + window.id)
-	 var int=self.setInterval("clock()",2000);
+	 var int=self.setInterval("clock()",5000);
 	 function clock()
 	 {
 		 channel.whisper('typing', {
 		 userid: window.id,
-		 message: 'jack',
-		 typing: true
+		 message: 'jack —— ' + new Date(),
 		 });
 	 }
-    // 收听端
-    Echo.join('privatePush.' + window.id)
-        .listenForWhisper('typing', (e) => {
-            console.log(e.message);
-        });
 
 </script>
 </body>

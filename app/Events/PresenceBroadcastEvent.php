@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use App\Models\Article;
 
 /***
  * 广播 —— Presence(存在频道)
@@ -19,14 +20,16 @@ class PresenceBroadcastEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    protected $article;
+
     /**
      * 创建一个新的事件实例.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Article $article)
     {
-        //
+        $this->article = $article;
     }
 
     /**
@@ -36,6 +39,26 @@ class PresenceBroadcastEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('room.'.$this->message->room_id);
+        // 存在频道
+        return new PresenceChannel('presenceChannel');
+    }
+
+    /***
+     * 广播内容
+     * @return array
+     */
+    public function broadcastWith()
+    {
+        return ['id' => 'ssss', 'article' => $this->article];
+    }
+
+    /**
+     * 广播的事件名称.如果未定义则默认为事件名称即 PresenceBroadcastEvent
+     *
+     * @return string
+     */
+    public function broadcastAs()
+    {
+        return 'presenceArticle';
     }
 }
