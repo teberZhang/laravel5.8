@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Log;
  * Class SendEmails
  * @package App\Console\Commands
  * 使用 Artisan 构建强大的控制台应用
- * 控制台命令 php artisan email:send foo bar --queue=release
+ * 控制台命令: --force 存在为true 未传递默认false
+ * php artisan email:send tom jack --queue=kk --force
  */
 class SendEmails extends Command
 {
@@ -19,8 +20,9 @@ class SendEmails extends Command
      * @var string
      */
     protected $signature = 'email:send 
-        {user* : The IDS of the user} 
-        {--queue=default : Whether the job should be queued}';
+        {user* : 用户id集合jack tom —— 数组} 
+        {--queue=default : 任务是否需要使用队列}
+        {--force : 传递布尔值}';
 
     /**
      * 控制台命令描述.
@@ -77,8 +79,6 @@ class SendEmails extends Command
         $users = [
             ['id'=>1],
             ['id'=>2],
-            ['id'=>3],
-            ['id'=>4],
         ];
         $bar = $this->output->createProgressBar(count($users));
         foreach ($users as $user) {
@@ -99,6 +99,6 @@ class SendEmails extends Command
         $options = $this->options();
         $this->info('options = ' . json_encode($options));
 
-        Log::info(date("Y-m-d H:i:s")." --- php artisan email:send");
+        //Log::info(date("Y-m-d H:i:s")." --- php artisan email:send");
     }
 }
