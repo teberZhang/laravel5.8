@@ -20,6 +20,7 @@ Artisan::command('inspire', function () {
 //自定义命令php artisan build project
 Artisan::command('build {project}', function ($project) {
     $this->info("Building {$project}!");
+    \Illuminate\Support\Facades\Log::info("Building {$project}!");
 })->describe('第1个简单命令');
 
 // 广播 —— public

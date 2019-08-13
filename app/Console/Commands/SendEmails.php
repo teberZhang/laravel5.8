@@ -99,6 +99,6 @@ class SendEmails extends Command
         $options = $this->options();
         $this->info('options = ' . json_encode($options));
 
-        //Log::info(date("Y-m-d H:i:s")." --- php artisan email:send");
+        Log::info(date("Y-m-d H:i:s")." --- php artisan email:send");
     }
 }
