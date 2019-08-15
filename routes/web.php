@@ -180,7 +180,7 @@ Route::get('redis-publish', function () {
     Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
 });
 
-Route::get('sqlBuilder', 'Safety\GrantController@index');
+Route::get('sqlBuilder', 'Stage\NotificationController@broadcastNotification');
 
 /***
  * 广播类
@@ -193,6 +193,8 @@ Route::view('privatePush', 'privatePush');
 Route::view('privateWhisper', 'privateWhisper');
 // 广播 —— 存在频道 PresenceChannel
 Route::view('presencePush', 'presencePush');
+// 广播通知
+Route::view('newsBroadcastNotification', 'newsBroadcastNotification');
 
 
 Auth::routes();

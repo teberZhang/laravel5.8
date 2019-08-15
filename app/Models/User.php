@@ -86,4 +86,25 @@ class User extends Model
     {
         return $this->hasMany('App\Models\Article');
     }
+
+    /**
+     * 邮件自发送定义接收人.
+     * 如果不指定 邮件 或者 通知 —— 邮件 发送的时候会默认使用 email 属性
+     *
+     * @return string
+     */
+    public function routeNotificationForMail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * 用户接收广播通知的通道.
+     *
+     * @return array
+     */
+    /*public function receivesBroadcastNotificationsOn()
+    {
+        return 'users.'.$this->id;
+    }*/
 }

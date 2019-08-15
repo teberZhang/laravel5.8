@@ -11,9 +11,11 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
+// 广播通知 —— userModel 如果发送通知用的 App.User
+Broadcast::channel('App.User.{id}', App\Broadcasting\UserNotificationBroadcastChannel::class);
+
+// 广播通知 —— userModel 如果发送通知用的 App.Models.User
+Broadcast::channel('App.Models.User.{id}', App\Broadcasting\UserNotificationBroadcastChannel::class);
 
 // 广播通道news —— public
 Broadcast::channel('news', App\Broadcasting\NewsPublicBroadcastChannel::class);
