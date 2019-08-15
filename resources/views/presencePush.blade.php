@@ -13,17 +13,25 @@
 <div class="content" id="app">
     存在频道 PresenceChannel —— 广播
 </div>
-<script>
-    @if(!empty(Auth::user()))
-        window.id = "{{Auth::user()->id}}"
-    @endif
-</script>
 <script src="{{ mix('js/app.js') }}"></script>
 <script>
-    // 收听端
-    Echo.join('privatePush.' + window.id)
-        .listenForWhisper('typing', (e) => {
-            console.log(e.message);
+    /***
+     *  存在频道
+     */
+    Echo.join('presenceChannel')
+        .here((users) => {
+            console.log(users);
+
+        })
+        .joining((user) => {
+            console.log(user);
+        })
+        // .leaving((user) => {
+        //     console.log(user);
+        // })
+        .listen('.presenceArticle', (e) => {
+            console.log(e); // 收到消息进行的操作，参数 e 为所携带的数据
+
         });
 
 </script>

@@ -35,3 +35,10 @@ Artisan::command('privatePush', function () {
     broadcast(new \App\Events\PrivateMessageEvent($user,date('Y-m-d h:i:s A').": privatePush!"));
     $this->comment("privatePush sent");
 })->describe('私有广播');
+
+// 广播 —— presence
+Artisan::command('presencePush', function () {
+    $article = \App\Models\Article::find(rand(1,5));
+    broadcast(new \App\Events\PresenceBroadcastEvent($article));
+    $this->comment("presencePush sent");
+})->describe('存在频道');

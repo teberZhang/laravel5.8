@@ -29,6 +29,6 @@ class NewsPresenceBroadcastChannel
      */
     public function join(User $user)
     {
-        return $user->id < 1 ? [$user->id, $user->name] : null;
+        return $user->id < 1 ? [$user->id, $user->name] : true;
     }
 }
