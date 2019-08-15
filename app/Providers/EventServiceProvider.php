@@ -36,6 +36,12 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Mail\Events\MessageSent' => [
             'App\Listeners\MailSentListener',
         ],
+        /***
+         * 通知发送后触发的事件
+         */
+        'Illuminate\Notifications\Events\NotificationSent' => [
+            'App\Listeners\NotificationSentListener',
+        ],
     ];
 
     /**
