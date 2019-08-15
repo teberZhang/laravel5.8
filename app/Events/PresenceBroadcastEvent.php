@@ -49,7 +49,10 @@ class PresenceBroadcastEvent implements ShouldBroadcast
      */
     public function broadcastWith()
     {
-        return ['id' => 'ssss', 'article' => $this->article];
+        return [
+            'id' => 'ssss',
+            'article' => $this->article
+        ];
     }
 
     /**

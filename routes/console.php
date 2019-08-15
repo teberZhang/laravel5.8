@@ -38,7 +38,7 @@ Artisan::command('privatePush', function () {
 
 // 广播 —— presence
 Artisan::command('presencePush', function () {
-    $article = \App\Models\Article::find(rand(1,5));
+    $article = \App\Models\Article::find(rand(1, 5));
     broadcast(new \App\Events\PresenceBroadcastEvent($article));
     $this->comment("presencePush sent");
 })->describe('存在频道');

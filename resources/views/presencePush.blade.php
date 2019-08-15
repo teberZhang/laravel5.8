@@ -17,6 +17,7 @@
 <script>
     /***
      *  存在频道
+     *
      */
     Echo.join('presenceChannel')
         .here((users) => {

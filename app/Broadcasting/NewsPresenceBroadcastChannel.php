@@ -24,6 +24,7 @@ class NewsPresenceBroadcastChannel
     /**
      * 验证用户对频道的访问权限.
      *
+     *
      * @param  \App\User  $user
      * @return array|bool
      */
