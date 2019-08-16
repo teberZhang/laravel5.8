@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Basics;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /**
  * 资源控制器

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Basics;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

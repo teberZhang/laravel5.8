@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Safety;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /***
  * @desc 安全系列 —— API ——认证颁发访问令牌
