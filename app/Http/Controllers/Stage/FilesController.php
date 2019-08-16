@@ -29,8 +29,8 @@ class FilesController extends Controller
         /***
          * 获取文件
          */
-//        $contents = Storage::get('file.txt');
-//        dump($contents);
+        $contents = Storage::get('file.txt');
+        dump($contents);
         // exists 方法用于判断给定文件是否存在于磁盘上：
 //        $exists = Storage::disk('public')->exists('file.jpg');
 //        dump($exists);
@@ -62,7 +62,11 @@ class FilesController extends Controller
          */
         // 自动文件流
         // 自动计算文件名的MD5值...
-        //Storage::putFile('photos', new File('/storage/app/file.txt'));
+        // Storage::putFile('photos', new File('/storage/app/file.txt'));
+
+        // 添加内容到文件开头/结尾
+//        Storage::prepend('file1.txt', 'Prepended Text');
+//        Storage::append('file1.txt', 'Appended Text');
 
 
     }
