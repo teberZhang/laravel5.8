@@ -85,6 +85,19 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'mongodb' => array(
+            'driver'   => 'mongodb',
+            'host'     => env('MONGO_DB_HOST', '127.0.0.1'),
+            'port'     => env('MONGO_DB_PORT', '27017'),
+            'database' => env('MONGO_DB_DATABASE', 'mongodb'),
+            'username' => env('MONGO_DB_USERNAME', ''),
+            'password' => env('MONGO_DB_PASSWORD', ''),
+            'options' => array(
+                'database' => 'task_manager' // 要使用的数据库
+            )
+
+        ),
+
     ],
 
     /*
