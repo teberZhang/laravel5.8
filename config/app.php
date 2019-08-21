@@ -180,6 +180,11 @@ return [
          */
         Jenssegers\Mongodb\MongodbServiceProvider::class,
 
+        /*
+         * Package Uuid Providers...
+         */
+        Emadadly\LaravelUuid\LaravelUuidServiceProvider::class,
+
     ],
 
     /*
