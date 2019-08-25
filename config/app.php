@@ -185,6 +185,11 @@ return [
          */
         Emadadly\LaravelUuid\LaravelUuidServiceProvider::class,
 
+        /*
+         * Package RabbitMq Providers...
+         */
+        VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
+
     ],
 
     /*
