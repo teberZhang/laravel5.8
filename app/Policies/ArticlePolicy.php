@@ -6,12 +6,19 @@ use App\User;
 use App\Models\Article;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/***
+ * Policy 方法
+ * --model 会自动创建view、create等方法
+ * php artisan make:policy ArticlePolicy --model=Models\Article
+ * Class ArticlePolicy
+ * @package App\Policies
+ */
 class ArticlePolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the article.
+     * 确定用户是否可以查看文章.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Article  $article
@@ -23,18 +30,18 @@ class ArticlePolicy
     }
 
     /**
-     * Determine whether the user can create articles.
+     * 确定用户是否可以创建文章.
      *
      * @param  \App\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-        //
+        return $user->id > 10;
     }
 
     /**
-     * Determine whether the user can update the article.
+     * 确定用户是否可以更新文章.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Article  $article
@@ -58,7 +65,7 @@ class ArticlePolicy
     }
 
     /**
-     * Determine whether the user can restore the article.
+     * 确定用户是否可以还原文章.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Article  $article
@@ -70,7 +77,7 @@ class ArticlePolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the article.
+     * 确定用户是否可以永久删除文章.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Article  $article

@@ -3,14 +3,14 @@
 namespace App\Broadcasting;
 
 use App\User;
-use App\Models\Order;
 
 /***
- * 进阶系列 —— 广播 —— 定义频道类
- * Class OrderChannel
+ * 通知广播 —— private
+ * userModel 对应的 App.User
+ * Class UserNotificationBroadcastChannel
  * @package App\Broadcasting
  */
-class OrderChannel
+class UserNotificationBroadcastChannel
 {
     /**
      * Create a new channel instance.
@@ -25,12 +25,11 @@ class OrderChannel
     /**
      * Authenticate the user's access to the channel.
      *
-     * @param  \App\User $user
-     * @param Order $order
+     * @param  \App\User  $user
      * @return array|bool
      */
-    public function join(User $user, Order $order)
+    public function join(User $user, $id)
     {
-        return $user->id === $order->user_id;
+        return (int) $user->id === (int) $id;
     }
 }

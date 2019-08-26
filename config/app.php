@@ -175,6 +175,21 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Package Mongodb Providers...
+         */
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+
+        /*
+         * Package Uuid Providers...
+         */
+        Emadadly\LaravelUuid\LaravelUuidServiceProvider::class,
+
+        /*
+         * Package RabbitMq Providers...
+         */
+        VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class,
+
     ],
 
     /*
@@ -225,6 +240,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /***
+         *  Mongodb —— aliases
+         */
+        'Moloquent' => Jenssegers\Mongodb\Eloquent\Model::class,
+        'Mongo'     => Jenssegers\Mongodb\MongodbServiceProvider::class,
 
     ],
 

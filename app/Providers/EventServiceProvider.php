@@ -27,6 +27,21 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\OrderShipped' => [
             'App\Listeners\SendShipmentNotification',
         ],
+        /***
+         * 邮件发送 —— 事件 —— 发送前后触发
+         */
+        'Illuminate\Mail\Events\MessageSending' => [
+            'App\Listeners\MailSendingListener',
+        ],
+        'Illuminate\Mail\Events\MessageSent' => [
+            'App\Listeners\MailSentListener',
+        ],
+        /***
+         * 通知发送后触发的事件
+         */
+        'Illuminate\Notifications\Events\NotificationSent' => [
+            'App\Listeners\NotificationSentListener',
+        ],
     ];
 
     /**
