@@ -180,7 +180,8 @@ Route::get('redis-publish', function () {
     Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
 });
 
-Route::get('sqlBuilder', 'Mongodb\CurdModelController@index');
+//Route::get('sqlBuilder', 'Mongodb\CurdModelController@index');
+Route::get('sqlBuilder', 'Design\AbstractFactoryTest@test');
 
 /***
  * 广播类
