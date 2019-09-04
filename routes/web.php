@@ -181,7 +181,7 @@ Route::get('redis-publish', function () {
 });
 
 //Route::get('sqlBuilder', 'Mongodb\CurdModelController@index');
-Route::get('sqlBuilder', 'Design\AbstractFactoryTest@test');
+Route::get('sqlBuilder', 'Design\AdapterTest@test');
 
 /***
  * 广播类
