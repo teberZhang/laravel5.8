@@ -197,6 +197,17 @@ Route::view('presencePush', 'presencePush');
 // 广播通知
 Route::view('newsBroadcastNotification', 'newsBroadcastNotification');
 
+/***
+ * Swoole相关
+ */
+/***
+ * 基于Swoole实现高性能 Http 服务器(用Swoole替代Php-fpm请求分发)
+ * 请求 http://laravel-s.test 效果和 http://local.laravel58.com 效果相同
+ */
+// 在 Laravel 中集成 Swoole 实现 WebSocket 服务器
+Route::view('websocketLaravelsClient', 'laravels/websocketClient');
+
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
