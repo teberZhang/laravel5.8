@@ -206,6 +206,14 @@ Route::view('newsBroadcastNotification', 'newsBroadcastNotification');
  */
 // 在 Laravel 中集成 Swoole 实现 WebSocket 服务器
 Route::view('websocketLaravelsClient', 'laravels/websocketClient');
+/***
+ * 基于 Swoole 在 Laravel 中实现异步任务队列
+ * 访问方式:
+ * http://laravel-s.test/swooleTestTask
+ * http://todo-s.test/swooleTestTask
+ */
+Route::get('swooleTestTask', 'Swoole\TestTaskController@index');
+
 
 
 
