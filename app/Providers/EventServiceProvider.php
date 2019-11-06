@@ -7,6 +7,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -65,6 +67,19 @@ class EventServiceProvider extends ServiceProvider
         // 手动注册事件(通配符事件监听器 —— 监听多个事件)
         Event::listen('event.test.*',function ($event, $param) {
             Log::info('通配符事件监听器 eventName = ' . $event . '&params = ' . json_encode($param));
+        });
+
+        /***
+         * Swoole应用级别系统事件
+         */
+        // laravels.received_request
+        Event::listen('laravels.received_request', function (Request $request, $app) {
+            $request->query->set('get_key', 'swoole-get-param');// 修改 GET 请求参数
+            $request->request->set('post_key', 'swoole-post-param'); // 修改 POST 请求参数
+        });
+        // laravels.generated_response
+        Event::listen('laravels.generated_response', function (Request $request, Response $response, $app) {
+            $response->headers->set('header-key', 'swoole-header-xiaoyongzi');
         });
 
     }

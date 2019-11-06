@@ -18,7 +18,12 @@ return [
         'excluded_dirs' => [],
         'log'           => true,
     ],
-    'event_handlers'           => [],
+    // Swoole事件监听 —— 进程级别系统事件
+    'event_handlers'           => [
+        'WorkerStart' => \App\Listeners\WorkerStartEventListener::class,
+        'WorkerStop'  => \App\Listeners\WorkerStopEventListener::class,
+        'WorkerError' => \App\Listeners\WorkerErrorEventListener::class,
+    ],
     'websocket'                => [
         'enable' => true,
         'handler' => \App\Services\WebSocketService::class,
@@ -45,7 +50,10 @@ return [
         ],
         'max_wait_time' => 5,
     ],
-    'events'                   => [],
+    // Swoole事件监听 —— 自定义事件与事件监听器的映射关系
+    'events'                   => [
+        \App\Events\SwooleTestEvent::class => \App\Listeners\SwooleTestEventListener::class,
+    ],
     'swoole_tables'            => [],
     'register_providers'       => [],
     'cleaners'                 => [

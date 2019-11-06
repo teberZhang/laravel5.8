@@ -213,6 +213,8 @@ Route::view('websocketLaravelsClient', 'laravels/websocketClient');
  * http://todo-s.test/swooleTestTask
  */
 Route::get('swooleTestTask', 'Swoole\TestTaskController@index');
+// Swoole事件监听 —— 自定义事件
+Route::get('swooleTestEvent', 'Swoole\TestEventController@index');
 
 
 

@@ -29,6 +29,7 @@ class TestTaskController extends Controller
             $task->finish();
             var_dump('异步任务投递成功后完成业务回调');
         }
+        //var_dump($request->all());
         var_dump($success);
     }
 }
