@@ -54,7 +54,16 @@ return [
     'events'                   => [
         \App\Events\SwooleTestEvent::class => \App\Listeners\SwooleTestEventListener::class,
     ],
-    'swoole_tables'            => [],
+    // Swoole\Table 实现 Swoole 多进程数据共享
+    'swoole_tables'            => [
+        'ws' => [ // 表名，会加上 Table 后缀，比如这里是 wsTable
+            'size'   => 102400, //  表容量
+            'column' => [ // 表字段，字段名为 value
+                ['name' => 'value', 'type' => \Swoole\Table::TYPE_INT, 'size' => 8],
+            ],
+        ],
+        // 还可以定义其它表
+    ],
     'register_providers'       => [],
     'cleaners'                 => [
         // If you use the session/authentication/passport in your project

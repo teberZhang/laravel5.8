@@ -29,7 +29,9 @@ class WebSocketService implements WebSocketHandlerInterface
         // 在触发 WebSocket 连接建立事件之前，laravel 应用初始化的生命周期已经结束，你可以在这里获取
         // laravel 请求和会话数据
         // 调用 push方法向客户端推送数据，fd是客户端连接标示字段
-        // Log::info('WebSocket 连接建立');
+        Log::info('WebSocket 连接建立:' . $request->fd);
+        // wsTable 存储连接id
+        app('swoole')->wsTable->set('fd:' . $request->fd, ['value' => $request->fd]);
         $server->push($request->fd, '欢迎使用基于laravelS的websocket服务器');
     }
 
@@ -37,8 +39,13 @@ class WebSocketService implements WebSocketHandlerInterface
     public function onMessage(Server $server, Frame $frame)
     {
         // TODO: Implement onMessage() method.
-        // 调用 push 方法向客户端推送数据
-        $server->push($frame->fd, date("Y-m-d H:i:s") . ' 收到消息 ' . $frame->data);
+        foreach (app('swoole')->wsTable as $key => $row) {
+            if (strpos($key, 'fd:') === 0 && $server->exist($row['value'])) {
+                Log::info('Receive message from client: ' . $row['value']);
+                // 调用 push 方法向客户端推送数据
+                $server->push($frame->fd, date("Y-m-d H:i:s") . ' 收到消息 ' . $frame->data);
+            }
+        }
     }
 
     // 关闭连接时触发
