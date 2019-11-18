@@ -29,6 +29,7 @@ return [
         'handler' => \App\Services\WebSocketService::class,
     ],
     'sockets'                  => [],
+    // 协程 —— 注册自定义进程(1s执行1次)
     'processes'                => [
         //[
         //    'class'    => \App\Processes\TestProcess::class,
@@ -36,6 +37,12 @@ return [
         //    'pipe'     => 0 // The type of pipeline, 0: no pipeline 1: SOCK_STREAM 2: SOCK_DGRAM
         //    'enable'   => true // Whether to enable, default true
         //],
+        [
+            'class'    => \App\Processes\TestProcess::class,
+            'redirect' => false, // 是否将输入输出重定向到 stdin/stdout, true or false
+            'pipe'     => 0, // 管道类型, 0: 不使用管道 1: SOCK_STREAM 2: SOCK_DGRAM
+            'enable'   => false,
+        ],
     ],
     'timer'                    => [
         'enable'        => true,
@@ -91,6 +98,7 @@ return [
         'reactor_num'        => function_exists('swoole_cpu_num') ? swoole_cpu_num() * 2 : 4,
         'worker_num'         => function_exists('swoole_cpu_num') ? swoole_cpu_num() * 2 : 8,
         'task_worker_num'    => function_exists('swoole_cpu_num') ? swoole_cpu_num() * 2 : 8,
+        // task worker 与 worker 进程之间的通信模式，1 表示通过 unix socket，2 表示使用消息队列
         'task_ipc_mode'      => 1,
         'task_max_request'   => 8000,
         'task_tmpdir'        => @is_writable('/dev/shm/') ? '/dev/shm' : '/tmp',
@@ -106,7 +114,8 @@ return [
         'reload_async'       => true,
         'max_wait_time'      => 60,
         'enable_reuse_port'  => true,
-        'enable_coroutine'   => false,
+        // LaravelS 代码中启用 Swoole 协程
+        'enable_coroutine'   => true,
         'http_compression'   => false,
 
         // Slow log
