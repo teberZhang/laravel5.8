@@ -25,8 +25,19 @@ return [
         'WorkerError' => \App\Listeners\WorkerErrorEventListener::class,
     ],
     'websocket'                => [
-        'enable' => true,
-        'handler' => \App\Services\WebSocketService::class,
+        /***
+         * 在 Laravel 中集成 Swoole 实现 WebSocket 服务器
+         * 客户端发送消息给服务端，服务端将消息返回给客户端。
+         */
+//        'enable' => true,
+//        'handler' => \App\Services\WebSocketService::class,
+
+        /***
+         * 实时弹幕 —— WebSocket 服务器
+         * 客户端发送消息，服务端发送给所有连接的客户端
+         */
+        'enable'  => true,
+        'handler' => \App\Handlers\WebSocketHandler::class,
     ],
     'sockets'                  => [],
     // 协程 —— 注册自定义进程(1s执行1次)
@@ -71,7 +82,9 @@ return [
         ],
         // 还可以定义其它表
     ],
+    // 中间件或者服务提供者中处理新请求时销毁已存在的单例服务
     'register_providers'       => [],
+    // 单例服务清理器（每次请求处理完后清除:比如用户认证相关）
     'cleaners'                 => [
         // If you use the session/authentication/passport in your project
         // Hhxsv5\LaravelS\Illuminate\Cleaners\SessionCleaner::class,

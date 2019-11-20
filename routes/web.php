@@ -181,7 +181,7 @@ Route::get('redis-publish', function () {
 });
 
 //Route::get('sqlBuilder', 'Mongodb\CurdModelController@index');
-Route::get('sqlBuilder', 'Design\StrategyTest@test');
+Route::get('sqlBuilder', 'DbOperateController@select1');
 
 /***
  * 广播类
@@ -215,6 +215,14 @@ Route::view('websocketLaravelsClient', 'laravels/websocketClient');
 Route::get('swooleTestTask', 'Swoole\TestTaskController@index');
 // Swoole事件监听 —— 自定义事件
 Route::get('swooleTestEvent', 'Swoole\TestEventController@index');
+/***
+ * Swoole实战篇
+ */
+// 实时弹幕功能
+Route::get('swoole-danmu',function () {
+    return view('laravels/danmu');
+});
+
 
 
 
