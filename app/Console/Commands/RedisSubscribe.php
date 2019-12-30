@@ -46,18 +46,18 @@ class RedisSubscribe extends Command
     public function handle()
     {
         /**普通订阅*/
-        /*Redis::subscribe(['test-channel'], function($message) {
+        Redis::subscribe(['test-channel'], function($message) {
             $this->info($message);
-        });*/
+        });
 
         /**通配符订阅*/
         /*Redis::psubscribe(['*'], function($message, $channel) {
             $this->info($message);
         });*/
 
-        Redis::psubscribe(['users.*'], function($message, $channel) {
+        /*Redis::psubscribe(['users.*'], function($message, $channel) {
             $this->info($message);
-        });
+        });*/
 
     }
 }

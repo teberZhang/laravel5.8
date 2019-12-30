@@ -173,11 +173,16 @@ Route::get('my404', 'LoggingController@notFound');
 Route::get('logWrite', 'LoggingController@write');
 
 //-----------------------------数据库操作 —— Redis —— 发布/订阅-------
+/***
+ *  执行：php artisan redis:subscribe 查看发布到redis的数据
+ *  访问：http://local.laravel58.com/redis-publish 发布数据
+ *  Predis读写60s会超时报错。可以在config-redis配置中添加 read_write_timeout
+ */
 Route::get('redis-publish', function () {
     // 普通订阅
     Redis::publish('test-channel', json_encode(['foo' => 'bar']));
     //测试通配符订阅
-    Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
+    //Redis::publish('users.me001', json_encode(['id' => rand(10,100)]));
 });
 
 //Route::get('sqlBuilder', 'Mongodb\CurdModelController@index');
