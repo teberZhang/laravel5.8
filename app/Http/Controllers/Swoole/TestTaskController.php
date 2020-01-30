@@ -26,7 +26,8 @@ class TestTaskController extends Controller
         $success = \Hhxsv5\LaravelS\Swoole\Task\Task::deliver($task);
         // 任务完成调用回调
         if (is_bool($success) && $success) {
-            $task->finish();
+            // finish方法会自动调用
+            //$task->finish();
             var_dump('异步任务投递成功后完成业务回调');
         }
         //var_dump($request->all());
