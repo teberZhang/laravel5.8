@@ -187,6 +187,7 @@ Route::get('redis-publish', function () {
 
 //Route::get('sqlBuilder', 'Mongodb\CurdModelController@index');
 Route::get('sqlBuilder', 'DbOperateController@select1');
+Route::get('test-demo', 'Stage\PodcastController@store');
 
 /***
  * 广播类

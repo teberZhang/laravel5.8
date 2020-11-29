@@ -26,9 +26,9 @@ class PodcastController extends Controller
         /***
          * 普通任务
          */
-//        $orderId = 13;
-//        $order = Order::findOrFail($orderId);
-//        ProcessPodcastJob::dispatch($order);
+        $orderId = 13;
+        $order = Order::findOrFail($orderId);
+        ProcessPodcastJob::dispatch($order);
 
         /***
          * 延时分发
@@ -43,10 +43,12 @@ class PodcastController extends Controller
         /***
          * 指定的队列
          */
-        $orderId = 4;
-        $order = Order::findOrFail($orderId);
-        ProcessPodcastJob::dispatch($order)
-            ->onQueue('processing');
-        return $order;
+//        $orderId = 4;
+//        $order = Order::findOrFail($orderId);
+//        ProcessPodcastJob::dispatch($order)
+//            ->onQueue('processing');
+//        return $order;
+
+        return 'success';
     }
 }

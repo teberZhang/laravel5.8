@@ -54,7 +54,8 @@ class ProcessPodcastJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::info('消费了' . $this->order->toJson());
+        //Log::info('消费了' . $this->order->toJson());
+        Log::info(date("Y-m-d H:i:s") . '消费了' . $this->order->order_id);
     }
 
     /**
